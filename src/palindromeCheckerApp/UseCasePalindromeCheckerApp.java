@@ -9,39 +9,31 @@ public class UseCasePalindromeCheckerApp {
 
         String input = "level";
 
+        long startTime = System.nanoTime();
 
-        PalindromeStrategy strategy = new StackStrategy();
+        boolean isPalindrome = checkPalindrome(input);
 
-        boolean result = strategy.check(input);
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
 
         System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + result);
+        System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Execution Time : " + duration + " ns");
     }
-}
 
 
-interface PalindromeStrategy {
-    boolean check(String input);
-}
+    private static boolean checkPalindrome(String input) {
 
+        int start = 0;
+        int end = input.length() - 1;
 
-class StackStrategy implements PalindromeStrategy {
-
-    @Override
-    public boolean check(String input) {
-
-        java.util.Stack<Character> stack = new java.util.Stack<>();
-
-
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
-
-
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
                 return false;
             }
+            start++;
+            end--;
         }
 
         return true;
