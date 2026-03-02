@@ -2,37 +2,27 @@ package palindromeCheckerApp;
 
 public class UseCasePalindromeCheckerApp {
 
-    /**
-     * Application entry point.
-     *
-     * This is the first method executed by the JVM
-     * when the program starts.
-     *
-     * @param args Command-line arguments
-     */
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 
-        String input = "madam";
+            String input = "radar";
+            char[] chars = input.toCharArray();
+            int start = 0;
+            int end = chars.length - 1;
 
-        System.out.println("Palindrome Checker App - UC2");
-        System.out.println("Checking string: " + input);
+            boolean isPalindrome = true;
 
-        boolean isPalindrome = true;
+            while (start < end) {
 
+                if (chars[start] != chars[end]) {
+                    isPalindrome = false;
+                    break;
+                }
 
-        for (int i = 0; i < input.length() / 2; i++) {
-
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
+                start++;
+                end--;
             }
-        }
 
-
-        if (isPalindrome) {
-            System.out.println("Result: The string is a Palindrome.");
-        } else {
-            System.out.println("Result: The string is NOT a Palindrome.");
+            System.out.println("Input : " + input);
+            System.out.println("Is Palindrome? : " + isPalindrome);
         }
     }
-}
