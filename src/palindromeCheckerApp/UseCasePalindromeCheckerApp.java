@@ -7,28 +7,29 @@ public class UseCasePalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        // Hardcoded string
-        String input = "madam";
 
-        System.out.println("Palindrome Checker App - UC2");
-        System.out.println("Checking string: " + input);
+        String input = "level";
+
+        LinkedList<Character> list = new LinkedList<>();
+
+        for (char c : input.toCharArray()) {
+            list.add(c);
+        }
 
         boolean isPalindrome = true;
 
-        // Loop only till half of the string length
-        for (int i = 0; i < input.length() / 2; i++) {
+        while (list.size() > 1) {
 
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+            char first = list.removeFirst();
+            char last = list.removeLast();
+
+            if (first != last) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Display result
-        if (isPalindrome) {
-            System.out.println("Result: The string is a Palindrome.");
-        } else {
-            System.out.println("Result: The string is NOT a Palindrome.");
-        }
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
     }
